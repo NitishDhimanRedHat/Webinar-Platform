@@ -1,4 +1,3 @@
-// app/components/webinar-card/webinar-card.component.scss
 .webinar-card {
   border: none;
   border-radius: 8px;
@@ -15,9 +14,8 @@
     position: relative;
   }
 
-  /* Live badge */
   .position-absolute.top-0.end-0.bg-danger {
-    background-color: #dc3545 !important; /* Bootstrap danger red */
+    background-color: #dc3545 !important;
     color: #fff !important;
     font-weight: 600;
     font-size: 0.75rem;
@@ -25,9 +23,8 @@
     border-radius: 0.25rem;
   }
 
-  /* Viewers badge */
   .position-absolute.top-0.start-0.bg-dark {
-    background-color: #343a40 !important; /* Bootstrap dark */
+    background-color: #343a40 !important;
     color: #fff !important;
     font-weight: 600;
     font-size: 0.75rem;
@@ -35,7 +32,6 @@
     border-radius: 0.25rem;
   }
 
-  /* Duration text */
   .position-absolute.bottom-0.start-0.text-white {
     background-color: rgba(0, 0, 0, 0.6);
     padding: 0.2rem 0.5rem;
@@ -44,7 +40,6 @@
     font-weight: 600;
   }
 
-  /* Credits badge */
   .badge.bg-warning.text-dark {
     background-color: #fff3cd !important;
     color: #856404 !important;
@@ -54,7 +49,6 @@
     border-radius: 0.25rem;
   }
 
-  /* Key highlights box */
   .key-highlights {
     background-color: #fff0f0;
     border-radius: 0.25rem;
@@ -63,7 +57,6 @@
     color: #6c757d;
   }
 
-  /* Watch now button */
   .card-footer .btn-primary {
     background-color: #000;
     border: none;
@@ -73,26 +66,6 @@
     border-radius: 0.25rem;
   }
 
-  &.webinar-continue-watching {
-    .card-img-top {
-      height: 120px;
-      object-fit: cover;
-    }
-
-    .card-body {
-      padding: 0.75rem;
-    }
-
-    .card-title {
-      font-size: 0.8rem;
-      margin-bottom: 0.25rem;
-    }
-
-    .card-text {
-      font-size: 0.7rem;
-  }
-
-  /* Continue Watching Card Styles */
   &.webinar-continue-watching {
     max-width: 430px;
     margin: 0 auto;
@@ -117,9 +90,46 @@
         border-radius: 4px;
         font-size: 0.75rem;
         font-weight: 600;
+      }
+    }
+
+    .card-body {
+      padding: 0.75rem 1rem;
+
+      .card-title {
+        font-size: 0.8rem;
+        font-weight: 700;
+        margin-bottom: 0.25rem;
+      }
+
+      .d-flex.align-items-center {
+        font-size: 0.85rem;
+        color: #6c757d;
+
+        .dot-separator {
+          width: 4px;
+          height: 4px;
+          background-color: #6c757d;
+          border-radius: 50%;
+          margin: 0 8px;
+        }
+      }
+
+      .progress {
+        height: 6px;
+        border-radius: 3px;
+        background-color: #e9ecef;
+        margin-top: 0.75rem;
+
+        .progress-bar {
+          background-color: #dc3545;
+          height: 6px;
+          border-radius: 3px;
+        }
+      }
+    }
   }
 
-  /* Cardiology Card Styles */
   &.webinar-cardiology {
     max-width: 350px;
     margin: 0 auto;
@@ -137,11 +147,9 @@
         border-top-right-radius: 8px;
       }
 
-      .cardiology-logos {
-        img.logo-img {
-          height: 30px;
-          object-fit: contain;
-        }
+      .cardiology-logos .logo-img {
+        height: 30px;
+        object-fit: contain;
       }
 
       .speaker-photo {
@@ -239,13 +247,14 @@
           color: #6c757d;
           margin-bottom: 0;
         }
+
         p.fw-bold.mb-0 {
           font-weight: 700;
           font-size: 0.9rem;
         }
       }
 
-      button.btn-dark {
+      .btn-dark {
         background-color: #000;
         border: none;
         font-weight: 600;
@@ -262,7 +271,7 @@
         }
       }
 
-      button.btn-primary {
+      .btn-primary {
         width: 100%;
         font-weight: 600;
         font-size: 0.9rem;
@@ -271,83 +280,38 @@
       }
     }
   }
-}
 
-    .card-body {
-      padding: 0.75rem 1rem;
-
-      .card-title {
-        font-size: 1rem;
-        font-weight: 700;
-        margin-bottom: 0.25rem;
-      }
-
-      .d-flex.align-items-center {
-        font-size: 0.85rem;
-        color: #6c757d;
-
-        .dot-separator {
-          width: 4px;
-          height: 4px;
-          background-color: #6c757d;
-          border-radius: 50%;
-          margin: 0 8px;
-        }
-      }
-
-      .progress {
-        height: 6px;
-        border-radius: 3px;
-        background-color: #e9ecef;
-        margin-top: 0.75rem;
-
-        .progress-bar {
-          background-color: #dc3545;;
-          height: 6px;
-          border-radius: 3px;
-        }
-      }
-    }
-  }
-}
-
-  /* New styles for updated design */
-
-  /* Credits badge with star icon */
   .d-flex.align-items-center.mb-2 {
     i.fas.fa-star {
       font-size: 1rem;
-      color: #ffc107; /* Bootstrap warning yellow */
+      color: #ffc107;
     }
+
     .badge {
       font-weight: 600;
       font-size: 0.85rem;
       padding: 0.3rem 0.6rem;
       border-radius: 0.25rem;
     }
+
     small.text-muted {
       font-size: 0.75rem;
       margin-left: 0.5rem;
     }
   }
 
-  /* Title */
   .card-title {
     font-weight: 700;
     font-size: 1.1rem;
     margin-bottom: 0.5rem;
   }
 
-  /* Presenter with icon */
-  .card-text.d-flex.align-items-center {
-    i.fas.fa-user-circle {
-      font-size: 1rem;
-      margin-right: 0.3rem;
-      color: #6c757d;
-    }
+  .card-text.d-flex.align-items-center i.fas.fa-user-circle {
+    font-size: 1rem;
+    margin-right: 0.3rem;
+    color: #6c757d;
   }
 
-  /* Key highlights */
   .key-highlights {
     background-color: #fff0f0;
     border-radius: 0.25rem;
@@ -363,7 +327,6 @@
     }
   }
 
-  /* Footer for upcoming webinars */
   .card-footer.bg-lightblue {
     background-color: #d9f0f9;
     padding: 0.75rem 1rem;
@@ -378,13 +341,14 @@
         color: #6c757d;
         margin-bottom: 0;
       }
+
       p.fw-bold.mb-0 {
         font-weight: 700;
         font-size: 0.9rem;
       }
     }
 
-    button.btn-dark {
+    .btn-dark {
       background-color: #000;
       border: none;
       font-weight: 600;

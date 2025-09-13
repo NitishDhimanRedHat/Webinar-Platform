@@ -10,7 +10,7 @@
       <!-- Live Webinars Section -->
       <app-section-header title="Live webinars" viewAllLink="#"></app-section-header>
 
-      <div class="row row-cols-1 row-cols-md-3 g-3 mb-4">
+      <div class="row row-cols-1 row-cols-md-3 g-3 mb-8">
         <div class="col" *ngFor="let webinar of liveWebinars; trackBy: trackByWebinarId">
           <app-webinar-card [webinar]="webinar" cardType="live"></app-webinar-card>
         </div>
@@ -19,7 +19,7 @@
       <!-- Upcoming Webinars Section -->
       <app-section-header title="Upcoming webinars" viewAllLink="#"></app-section-header>
 
-      <div class="row row-cols-1 row-cols-md-3 g-3 mb-4">
+      <div class="row row-cols-1 row-cols-md-3 g-3 mb-8">
         <div class="col" *ngFor="let webinar of upcomingWebinars; trackBy: trackByWebinarId">
           <app-webinar-card
             [webinar]="webinar"
@@ -31,7 +31,7 @@
       <!-- Continue Watching Section -->
       <app-section-header title="Continue watching" viewAllLink="#"></app-section-header>
 
-      <div class="row row-cols-2 row-cols-md-4 g-3 mb-4">
+      <div class="row row-cols-2 row-cols-md-4 g-3 mb-8">
         <div class="col" *ngFor="let webinar of continueWatchingWebinars; trackBy: trackByWebinarId">
           <app-webinar-card [webinar]="webinar" cardType="continue-watching"></app-webinar-card>
         </div>
@@ -40,7 +40,7 @@
       <!-- Cardiology Webinars Section -->
       <app-section-header title="Webinars based on cardiology" viewAllLink="#"></app-section-header>
 
-      <div class="row row-cols-1 row-cols-md-3 g-3 mb-4">
+      <div class="row row-cols-1 row-cols-md-3 g-3 mb-8">
         <div class="col" *ngFor="let webinar of cardiologyWebinars; trackBy: trackByWebinarId">
           <app-webinar-card
             [webinar]="webinar"
@@ -52,7 +52,7 @@
       <!-- Top Speakers Section -->
       <app-section-header title="Top speakers" viewAllLink="#"></app-section-header>
 
-      <div class="row row-cols-2 row-cols-md-5 g-3 mb-4">
+      <div class="row row-cols-2 row-cols-md-5 g-3 mb-8">
         <div class="col" *ngFor="let speaker of speakers; trackBy: trackById">
           <app-speaker-card [speaker]="speaker"></app-speaker-card>
         </div>
@@ -61,7 +61,7 @@
       <!-- Browse by Topic Section -->
       <app-section-header title="Browse by topic" viewAllLink="#"></app-section-header>
 
-      <div class="row row-cols-2 row-cols-md-6 g-3 mb-4">
+      <div class="row row-cols-2 row-cols-md-6 g-3 mb-8">
         <div class="col" *ngFor="let topic of topics; trackBy: trackById">
           <app-topic-card [topic]="topic"></app-topic-card>
         </div>

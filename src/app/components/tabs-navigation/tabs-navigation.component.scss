@@ -1,0 +1,15 @@
+// app/components/tabs-navigation/tabs-navigation.component.scss
+.nav-tabs {
+  .nav-link {
+    color: #6c757d;
+    border: none;
+    border-bottom: 2px solid transparent;
+    padding: 10px 15px;
+    
+    &.active {
+      color: #0d6efd;
+      border-bottom: 2px solid #0d6efd;
+      background: transparent;
+    }
+  }
+}

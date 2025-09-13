@@ -1,0 +1,191 @@
+<!-- app/pages/webinar-platform/webinar-platform.component.html -->
+<div class="webinar-platform pb-5">
+  <app-header></app-header>
+  <app-tabs-navigation (tabChanged)="setActiveTab($event)"></app-tabs-navigation>
+
+  <div class="container-fluid py-3 px-5">
+    <!-- For You Tab -->
+    <div *ngIf="activeTab === 'for-you'" class="tab-content">
+
+      <!-- Live Webinars Section -->
+      <app-section-header title="Live webinars" viewAllLink="#"></app-section-header>
+
+      <div class="row row-cols-1 row-cols-md-3 g-3 mb-4">
+        <div class="col" *ngFor="let webinar of liveWebinars; trackBy: trackByWebinarId">
+          <app-webinar-card [webinar]="webinar" cardType="live"></app-webinar-card>
+        </div>
+      </div>
+
+      <!-- Upcoming Webinars Section -->
+      <app-section-header title="Upcoming webinars" viewAllLink="#"></app-section-header>
+
+      <div class="row row-cols-1 row-cols-md-3 g-3 mb-4">
+        <div class="col" *ngFor="let webinar of upcomingWebinars; trackBy: trackByWebinarId">
+          <app-webinar-card
+            [webinar]="webinar"
+            cardType="cardiology"
+          ></app-webinar-card>
+        </div>
+      </div>
+
+      <!-- Continue Watching Section -->
+      <app-section-header title="Continue watching" viewAllLink="#"></app-section-header>
+
+      <div class="row row-cols-2 row-cols-md-4 g-3 mb-4">
+        <div class="col" *ngFor="let webinar of continueWatchingWebinars; trackBy: trackByWebinarId">
+          <app-webinar-card [webinar]="webinar" cardType="continue-watching"></app-webinar-card>
+        </div>
+      </div>
+
+      <!-- Cardiology Webinars Section -->
+      <app-section-header title="Webinars based on cardiology" viewAllLink="#"></app-section-header>
+
+      <div class="row row-cols-1 row-cols-md-3 g-3 mb-4">
+        <div class="col" *ngFor="let webinar of cardiologyWebinars; trackBy: trackByWebinarId">
+          <app-webinar-card
+            [webinar]="webinar"
+            cardType="cardiology"
+          ></app-webinar-card>
+        </div>
+      </div>
+
+      <!-- Top Speakers Section -->
+      <app-section-header title="Top speakers" viewAllLink="#"></app-section-header>
+
+      <div class="row row-cols-2 row-cols-md-5 g-3 mb-4">
+        <div class="col" *ngFor="let speaker of speakers; trackBy: trackById">
+          <app-speaker-card [speaker]="speaker"></app-speaker-card>
+        </div>
+      </div>
+
+      <!-- Browse by Topic Section -->
+      <app-section-header title="Browse by topic" viewAllLink="#"></app-section-header>
+
+      <div class="row row-cols-2 row-cols-md-6 g-3 mb-4">
+        <div class="col" *ngFor="let topic of topics; trackBy: trackById">
+          <app-topic-card [topic]="topic"></app-topic-card>
+        </div>
+      </div>
+
+      <!-- Webinars You May Like Section -->
+      <app-section-header title="Webinars you may like" viewAllLink="#"></app-section-header>
+
+      <div class="row g-3 mb-4">
+        <div class="col-12 col-md-2">
+          <div class="filter-sidebar p-3 bg-light rounded">
+            <div class="mb-3">
+              <button class="btn btn-secondary btn-sm w-100" (click)="resetFilters()">Clear Filters</button>
+            </div>
+            <div class="filter-section">
+              <h6 class="mb-2 d-flex justify-content-between align-items-center" (click)="toggleFilter('specialty')">
+                Specialty
+                <i class="fas" [ngClass]="{'fa-chevron-down': !filterOpen.specialty, 'fa-chevron-up': filterOpen.specialty}"></i>
+              </h6>
+              <div *ngIf="filterOpen.specialty">
+                <div class="search-input-wrapper mb-3 position-relative">
+                  <input type="text" class="form-control search-input" placeholder="Search in docquity" [(ngModel)]="filterSearch.specialty" />
+                  <i class="fas fa-search search-icon"></i>
+                </div>
+                <ul class="list-unstyled filter-list">
+                  <li *ngFor="let specialty of getFilteredSpecialties()" class="mb-2">
+                  <input type="checkbox" [id]="'specialty-' + specialty" #specialtyCheckbox (change)="onFilterChange('specialty', specialty, specialtyCheckbox.checked)">
+                  <label [for]="'specialty-' + specialty" class="ms-2">{{ specialty }}</label>
+                </li>
+              </ul>
+            </div>
+          </div>
+
+            <div class="filter-section">
+              <h6 class="mb-2 d-flex justify-content-between align-items-center" (click)="toggleFilter('topics')">
+                Topics
+                <i class="fas" [ngClass]="{'fa-chevron-down': !filterOpen.topics, 'fa-chevron-up': filterOpen.topics}"></i>
+              </h6>
+              <div *ngIf="filterOpen.topics">
+                <ul class="list-unstyled filter-list">
+                  <li *ngFor="let topic of topics" class="mb-2">
+                    <input type="checkbox" [id]="'topic-' + topic.id" #topicCheckbox (change)="onFilterChange('topics', topic.name, topicCheckbox.checked)">
+                    <label [for]="'topic-' + topic.id" class="ms-2">{{ topic.name }}</label>
+                  </li>
+                </ul>
+              </div>
+            </div>
+
+            <div class="filter-section">
+              <h6 class="mb-2 d-flex justify-content-between align-items-center" (click)="toggleFilter('speakers')">
+                Speakers
+                <i class="fas" [ngClass]="{'fa-chevron-down': !filterOpen.speakers, 'fa-chevron-up': filterOpen.speakers}"></i>
+              </h6>
+              <div *ngIf="filterOpen.speakers">
+                <ul class="list-unstyled filter-list">
+                  <li *ngFor="let speaker of speakers" class="mb-2">
+                    <input type="checkbox" [id]="'speaker-' + speaker.id" #speakerCheckbox (change)="onFilterChange('speakers', speaker.name, speakerCheckbox.checked)">
+                    <label [for]="'speaker-' + speaker.id" class="ms-2">{{ speaker.name }}</label>
+                  </li>
+                </ul>
+              </div>
+            </div>
+
+            <div class="filter-section">
+              <h6 class="mb-2 d-flex justify-content-between align-items-center" (click)="toggleFilter('pharma')">
+                Pharma & associations
+                <i class="fas" [ngClass]="{'fa-chevron-down': !filterOpen.pharma, 'fa-chevron-up': filterOpen.pharma}"></i>
+              </h6>
+              <div *ngIf="filterOpen.pharma">
+                <ul class="list-unstyled filter-list">
+                  <li *ngFor="let pharma of pharmaAssociations" class="mb-2">
+                    <input type="checkbox" [id]="'pharma-' + pharma" #pharmaCheckbox (change)="onFilterChange('pharma', pharma, pharmaCheckbox.checked)">
+                    <label [for]="'pharma-' + pharma" class="ms-2">{{ pharma }}</label>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-12 col-md-10">
+          <div class="d-flex mb-3">
+            <button class="btn btn-outline-primary me-2 active">Topics</button>
+            <button class="btn btn-outline-primary me-2">Speakers</button>
+            <button class="btn btn-outline-primary">Pharma & associations</button>
+          </div>
+
+          <div class="row row-cols-1 row-cols-md-3 g-3">
+            <div class="col" *ngFor="let webinar of filteredWebinars; let i = index; trackBy: trackByWebinarId">
+              <app-webinar-card
+                [webinar]="webinar"
+                cardType="filtered"
+                [showSocialInteractions]="true"
+              ></app-webinar-card>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Live Tab -->
+    <div *ngIf="activeTab === 'live'" class="tab-content">
+      <app-section-header title="Live webinars" viewAllLink="#"></app-section-header>
+
+      <div class="row row-cols-1 row-cols-md-3 g-3 mb-4">
+        <div class="col" *ngFor="let webinar of liveWebinars; trackBy: trackByWebinarId">
+          <app-webinar-card [webinar]="webinar" cardType="live"></app-webinar-card>
+        </div>
+      </div>
+    </div>
+
+    <!-- Upcoming Tab -->
+    <div *ngIf="activeTab === 'upcoming'" class="tab-content">
+      <app-section-header title="Upcoming webinars" viewAllLink="#"></app-section-header>
+
+      <div class="row row-cols-1 row-cols-md-3 g-3 mb-4">
+        <div class="col" *ngFor="let webinar of upcomingWebinars; trackBy: trackByWebinarId">
+          <app-webinar-card [webinar]="webinar" cardType="upcoming"></app-webinar-card>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Other card section -->
+    
+  </div>
+
+  <!-- <app-footer-nav></app-footer-nav> -->
+</div>

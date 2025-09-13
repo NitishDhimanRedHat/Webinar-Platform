@@ -1,0 +1,13 @@
+<!-- app/components/footer-nav/footer-nav.component.html -->
+<nav class="footer-nav navbar fixed-bottom bg-white border-top">
+  <div class="container-fluid">
+    <ul class="navbar-nav w-100 d-flex flex-row justify-content-between">
+      <li class="nav-item" *ngFor="let item of navItems">
+        <a class="nav-link text-center" [class.active]="item.active" href="#">
+          <i [class]="item.icon"></i>
+          <span class="d-block small">{{ item.label }}</span>
+        </a>
+      </li>
+    </ul>
+  </div>
+</nav>

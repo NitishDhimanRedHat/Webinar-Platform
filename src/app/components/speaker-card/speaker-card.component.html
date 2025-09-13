@@ -1,0 +1,14 @@
+<!-- app/components/speaker-card/speaker-card.component.html -->
+<div class="speaker-card-container text-center p-2">
+  <div class="position-relative d-inline-block">
+    <img [src]="speaker.imageUrl" class="rounded-circle" [ngClass]="{'live-border': speaker.isLive}" width="200" height="200" [alt]="speaker.name">
+    <span *ngIf="speaker.isLive" class="position-absolute top-0 end-0 bg-danger text-white px-1 rounded small live-badge">
+      <i class="fas fa-broadcast-tower me-1"></i> Live
+    </span>
+  </div>
+  <h6 class="mt-2 mb-0 d-flex justify-content-center align-items-center">
+    {{ speaker.name }}
+    <i class="fas fa-chevron-right ms-2"></i>
+  </h6>
+  <p class="small text-muted mb-0">{{ speaker.specialty }}</p>
+</div>

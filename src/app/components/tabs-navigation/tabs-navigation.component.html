@@ -1,0 +1,16 @@
+<!-- app/components/tabs-navigation/tabs-navigation.component.html -->
+<div class="container-fluid border-bottom">
+  <ul class="nav nav-tabs border-0" id="webinarTabs" role="tablist">
+    <li class="nav-item" role="presentation" *ngFor="let tab of tabs">
+      <button 
+        class="nav-link" 
+        [class.active]="activeTab === tab.id"
+        [id]="tab.id + '-tab'"
+        type="button" 
+        role="tab"
+        (click)="setActiveTab(tab.id)">
+        {{ tab.label }}
+      </button>
+    </li>
+  </ul>
+</div>
